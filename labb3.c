@@ -1,5 +1,6 @@
 #include <stdio.h>
 
+
 #include "common.h"
 #include "value.h"
 #include "labb3.h"
@@ -8,10 +9,9 @@
 
 int main()
 {
-
-    struct Vektor mainArray;
-    mainArray.initilized = 0;
-    mainArray.sorted = 0;
+    static int array[100];
+    int initilized = 0;
+    int sorted = 0;
     
     int loop = 1;
     while(loop == 1)
@@ -29,17 +29,17 @@ int main()
         switch(choice)
         {
             case 1:
-                mainArray.array = generateArray(mainArray.array);
-                mainArray.initilized = 1;
-                mainArray.sorted = 0;
-                printArray(mainArray.array);
+                array = generateArray(array);
+                initilized = 1;
+                sorted = 0;
+                printArray(array);
                 break;
             case 2:
-                if(mainArray.initilized == 1)
+                if(initilized == 1)
                 {
-                    mainArray.array = sortArray(mainArray.array);
-                    mainArray.sorted = 1;
-                    printArray(mainArray.array);
+                    array = sortArray(array);
+                    sorted = 1;
+                    printArray(array);
                 }
                 else
                 {
@@ -47,9 +47,9 @@ int main()
                 }
                 break;
             case 3:
-                if(mainArray.sorted == 1)
+                if(sorted == 1)
                 {
-                    valueOperations(mainArray.array);
+                    valueOperations(array);
                 }
                  else
                 {
@@ -57,19 +57,19 @@ int main()
                 }
                 break;
             case 4:
-                if(mainArray.sorted == 1)
+                if(sorted == 1)
                 {
                     int value;
                     printf("Vilket värde vill ni söka efter?\n");
                     scanf("%d", &value);
-                    searchArray(mainArray.array, value);
+                    searchArray(array, value);
                 }
                  else
                 {
                     printf("Ej giltig Talföljd.\nSortera först.\n");
                 }
             case 8:
-                printArray(mainArray.array);
+                printArray(array);
                 break;
             case 9:
                 loop = 0;
